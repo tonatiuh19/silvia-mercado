@@ -1,0 +1,70 @@
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.book-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 15px; /* Add border radius to the bottom left */
+  border: 2px solid #000; /* Add border color and width */
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.custom-form .custom-input {
+  border: 2px solid #ffffff; /* Custom border color */
+  height: 70px;
+  border-radius: 5px; /* Custom border radius */
+  padding: 10px; /* Custom padding */
+  font-size: 1rem; /* Custom font size */
+  margin-bottom: 15px; /* Custom margin */
+  background-color: rgb(16, 17, 17), var(--bs-bg-opacity) !important;
+  color: #ffffff; /* Custom text color */
+  border-radius: 1.5rem;
+}
+
+.custom-form .custom-input::placeholder {
+  color: #cccccc; /* Custom placeholder color */
+  padding-left: 10px;
+}
+
+.custom-form .custom-input:focus,
+.custom-form .custom-input:active {
+  border-color: #0056b3; /* Custom border color on focus and active */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Custom box shadow on focus and active */
+  outline: none; /* Remove default outline */
+  background-color: #000000; /* Custom background color */
+  color: #ffffff; /* Custom text color */
+}
+
+.custom-button {
+  transition: transform 0.3s ease; /* Add transition for smooth effect */
+  border-radius: 1.5rem;
+  height: 70px;
+}
+
+.custom-button:hover {
+  transform: scale(1.05); /* Increase size on hover */
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 10px;
+  padding-right: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 4rem;
+  cursor: pointer;
+}

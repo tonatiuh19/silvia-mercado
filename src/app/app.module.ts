@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import { BookPurchaseDialogModule } from './book-purchase-dialog/book-purchase-dialog.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import Aura from '@primeng/themes/aura';
     BrowserModule,
     AppRoutingModule,
     LandingModule,
+    BookPurchaseDialogModule,
     BrowserAnimationsModule,
   ],
   providers: [

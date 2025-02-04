@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -7,21 +8,13 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.css'],
 })
 export class LandingComponent implements OnInit {
-  displayDialog: boolean = false;
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private router: Router) {}
 
   ngOnInit(): void {
     console.log('Landing component initialized');
   }
 
   showDialog() {
-    this.displayDialog = true;
-    console.log('Dialog opened');
-  }
-
-  hideDialog() {
-    this.displayDialog = false;
-    this.cdr.detectChanges(); // Detect changes when the dialog is closed
+    this.router.navigate(['finanzasfelices']);
   }
 }
