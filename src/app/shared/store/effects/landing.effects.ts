@@ -45,6 +45,29 @@ export class LandingEffects {
     );
   });
 
+  insertPurchase$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.insertPurchase),
+      withLatestFrom(this.store.select(fromLanding.selectBook)),
+      switchMap(
+        ([{ id_books, name, email, price, token, payment_type }, book]) => {
+          return this.landingService
+            .insertPurchase(id_books, name, email, price, token, payment_type)
+            .pipe(
+              map((response) => {
+                return LandingActions.insertPurchaseSuccess({
+                  isPaid: response,
+                });
+              }),
+              catchError((error) => {
+                return of(LandingActions.insertPurchaseFailure({ error }));
+              })
+            );
+        }
+      )
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private store: Store,

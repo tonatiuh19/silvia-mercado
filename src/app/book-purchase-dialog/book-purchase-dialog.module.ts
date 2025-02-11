@@ -6,6 +6,8 @@ import { BookPurchaseDialogComponent } from './book-purchase-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { PaymentSuccessModule } from './payment-success/payment-success.module';
+import { PaymentFailureModule } from './payment-failure/payment-failure.module';
 
 @NgModule({
   declarations: [BookPurchaseDialogComponent],
@@ -18,6 +20,8 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
     FormsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    PaymentSuccessModule,
+    PaymentFailureModule,
   ],
   exports: [BookPurchaseDialogComponent],
 })

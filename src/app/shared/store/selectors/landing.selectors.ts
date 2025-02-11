@@ -19,3 +19,8 @@ export const selectBook = createSelector(
   selectLandingState,
   (state: LandingState) => state.book
 );
+
+export const selectIsPaid = createSelector(
+  selectLandingState,
+  (state: LandingState) => state.isPaid
+);

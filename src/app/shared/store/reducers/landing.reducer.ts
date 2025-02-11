@@ -37,6 +37,7 @@ export const LandingReducer = createRehydrateReducer(
       ...state,
       isLoading: true,
       isError: false,
+      isPaid: null,
     };
   }),
   on(LandingActions.getBookByIdSuccess, (state: LandingState, { book }) => {
@@ -52,6 +53,37 @@ export const LandingReducer = createRehydrateReducer(
       ...state,
       isLoading: false,
       isError: true,
+    };
+  }),
+  on(LandingActions.insertPurchase, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(
+    LandingActions.insertPurchaseSuccess,
+    (state: LandingState, { isPaid }) => {
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        isPaid,
+      };
+    }
+  ),
+  on(LandingActions.insertPurchaseFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
+  }),
+  on(LandingActions.resetPurchase, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isPaid: null,
     };
   })
 );

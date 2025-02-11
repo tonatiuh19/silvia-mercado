@@ -100,4 +100,12 @@
       <button class="close-button" (click)="closeDialog()">×</button>
     </div>
   </div>
+  <app-payment-success
+    *ngIf="selectIsPaid$ | async"
+    (backEvent)="goBack()"
+  ></app-payment-success>
+  <app-payment-failure
+    *ngIf="(selectIsPaid$ | async) === false"
+    (retryEvent)="retryPayment()"
+  ></app-payment-failure>
 </section>

@@ -28,6 +28,7 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   @Output() displayChange = new EventEmitter<boolean>();
 
   public selectBook$ = this.store.select(fromLanding.selectBook);
+  public selectIsPaid$ = this.store.select(fromLanding.selectIsPaid);
 
   faLock = faLock;
   faChevronRight = faChevronRight;
@@ -105,6 +106,10 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
         color: '#dc3545',
         iconColor: '#dc3545',
       },
+      valid: {
+        color: '#ffffff',
+        iconColor: '#ffffff',
+      },
     };
     this.stripe = await this.stripeService.getStripe(this.isTesting);
     if (this.stripe) {
@@ -134,6 +139,16 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
         this.isStripeError = false;
 
         console.log('Token generated', token);
+        this.store.dispatch(
+          LandingActions.insertPurchase({
+            id_books: this.book.id_books,
+            name: this.purchaseForm.get('name')?.value,
+            email: this.purchaseForm.get('email')?.value,
+            price: this.book.price.toString(),
+            token: token.id,
+            payment_type: 'stripe',
+          })
+        );
       }
     } else {
       this.isLoadingCheckout = false;
@@ -144,5 +159,26 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   closeDialog() {
     this.display = false;
     this.displayChange.emit(this.display);
+    this.router.navigate(['']);
+  }
+
+  retryPayment() {
+    this.isStripeError = false;
+    this.stripeErrorMessage = '';
+    this.unmountStripe();
+    this.setupStripe();
+    this.store.dispatch(LandingActions.resetPurchase());
+  }
+
+  unmountStripe() {
+    if (this.card) {
+      this.card.unmount();
+      this.card = null;
+    }
+  }
+
+  goBack() {
+    this.store.dispatch(LandingActions.resetPurchase());
+    this.closeDialog();
   }
 }

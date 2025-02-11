@@ -4,6 +4,7 @@ export const DOMAIN = 'https://garbrix.com/silvia/api';
 export interface LandingState {
   isLoading?: boolean;
   isError?: boolean;
+  isPaid: boolean | null;
   books?: BooksModel[];
   book: BooksModel;
 }

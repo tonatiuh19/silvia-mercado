@@ -29,3 +29,27 @@ export const getBookByIdFailure = createAction(
   `${actor} Get Book By Id Failure`,
   props<{ error: string }>()
 );
+
+export const insertPurchase = createAction(
+  `${actor} Insert Purchase`,
+  props<{
+    id_books: number;
+    name: string;
+    email: string;
+    price: string;
+    token: string;
+    payment_type: string;
+  }>()
+);
+
+export const insertPurchaseSuccess = createAction(
+  `${actor} Insert Purchase Success`,
+  props<{ isPaid: boolean }>()
+);
+
+export const insertPurchaseFailure = createAction(
+  `${actor} Insert Purchase Failure`,
+  props<{ error: string }>()
+);
+
+export const resetPurchase = createAction(`${actor} Reset Purchase`);
