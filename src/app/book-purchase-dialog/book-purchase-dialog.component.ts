@@ -6,11 +6,16 @@ import {
   OnInit,
   AfterViewInit,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faLock, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService } from '../shared/services/stripe.service';
 import { Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
+import { Store } from '@ngrx/store';
+import { fromLanding } from '../shared/store/selectors';
+import { Subject, takeUntil } from 'rxjs';
+import { BooksModel } from '../app.model';
+import { LandingActions } from '../shared/store/actions';
 
 @Component({
   selector: 'app-book-purchase-dialog',
@@ -21,6 +26,8 @@ import { Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
 export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
+
+  public selectBook$ = this.store.select(fromLanding.selectBook);
 
   faLock = faLock;
   faChevronRight = faChevronRight;
@@ -34,16 +41,26 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
 
   public isNameEmailFormValid = false;
 
+  public book: BooksModel = {
+    id_books: 0,
+    title: '',
+    price: 0,
+  };
+
   private stripe: Stripe | null = null;
   private elements: StripeElements | null = null;
   private card: StripeCardElement | null = null;
 
-  private isTesting = false;
+  private isTesting = true;
+
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private stripeService: StripeService
+    private stripeService: StripeService,
+    private route: ActivatedRoute,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -51,11 +68,26 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     this.purchaseForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      //recaptcha: ['', Validators.required],
+    });
+
+    this.store.dispatch(
+      LandingActions.getBookById({
+        id_books: 1,
+      })
+    );
+    this.selectBook$.pipe(takeUntil(this.unsubscribe$)).subscribe((book) => {
+      this.book = book;
     });
   }
 
   ngAfterViewInit(): void {
     this.setupStripe();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   async setupStripe() {
@@ -64,8 +96,9 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
         color: '#ffffff',
         fontSmoothing: 'antialiased',
         fontSize: '18px',
+        fontFamily: '"Kanit Regular", sans-serif',
         '::placeholder': {
-          color: '#aab7c4',
+          color: '#cccccc',
         },
       },
       invalid: {

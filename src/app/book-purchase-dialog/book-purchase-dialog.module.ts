@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { BookPurchaseDialogComponent } from './book-purchase-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [BookPurchaseDialogComponent],
@@ -15,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
   exports: [BookPurchaseDialogComponent],
 })

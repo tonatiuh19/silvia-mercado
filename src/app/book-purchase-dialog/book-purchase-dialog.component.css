@@ -91,3 +91,9 @@
   font-size: 4rem;
   cursor: pointer;
 }
+
+.recaptcha-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
