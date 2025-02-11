@@ -10,10 +10,6 @@
   border: 2px solid #000; /* Add border color and width */
 }
 
-.no-padding-left {
-  padding-left: 0 !important;
-}
-
 .custom-form .custom-input {
   border: 2px solid #ffffff; /* Custom border color */
   height: 70px;
@@ -33,6 +29,33 @@
 
 .custom-form .custom-input:focus,
 .custom-form .custom-input:active {
+  border-color: #0056b3; /* Custom border color on focus and active */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Custom box shadow on focus and active */
+  outline: none; /* Remove default outline */
+  background-color: #000000; /* Custom background color */
+  color: #ffffff; /* Custom text color */
+}
+
+.custom-form .custom-input-payment {
+  border: 2px solid #ffffff; /* Custom border color */
+  border-radius: 5px; /* Custom border radius */
+  padding: 10px; /* Custom padding */
+  padding-top: 28px;
+  padding-bottom: 28px;
+  font-size: 1rem; /* Custom font size */
+  margin-bottom: 15px; /* Custom margin */
+  background-color: rgb(16, 17, 17), var(--bs-bg-opacity) !important;
+  color: #ffffff; /* Custom text color */
+  border-radius: 1.5rem;
+}
+
+.custom-form .custom-input-payment::placeholder {
+  color: #cccccc; /* Custom placeholder color */
+  padding-left: 10px;
+}
+
+.custom-form .custom-input-payment:focus,
+.custom-form .custom-input-payment:active {
   border-color: #0056b3; /* Custom border color on focus and active */
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Custom box shadow on focus and active */
   outline: none; /* Remove default outline */
