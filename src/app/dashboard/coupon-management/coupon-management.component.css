@@ -1,0 +1,38 @@
+.coupon-panel_container {
+  padding: 1rem;
+}
+
+.coupon-panel_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.custom-p-table {
+  margin-top: 1rem;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+button.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+button.btn-close:focus {
+  outline: none;
+}
+
+button.btn-close:hover {
+  color: #dc3545;
+}

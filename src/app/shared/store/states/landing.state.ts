@@ -20,4 +20,5 @@ export const initialLandingState: LandingState = {
     price: 0,
   },
   purchases: [],
+  coupons: [],
 };

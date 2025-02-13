@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PurchasesViewModule } from './purchases-view/purchases-view.module';
 import { UpdatePriceModalModule } from './update-price-modal/update-price-modal.module';
+import { CouponManagementModule } from './coupon-management/coupon-management.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -12,6 +13,7 @@ import { UpdatePriceModalModule } from './update-price-modal/update-price-modal.
     FontAwesomeModule,
     PurchasesViewModule,
     UpdatePriceModalModule,
+    CouponManagementModule,
   ],
   exports: [DashboardComponent],
 })

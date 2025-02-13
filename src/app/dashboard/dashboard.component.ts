@@ -7,6 +7,7 @@ import { UpdatePriceModalComponent } from './update-price-modal/update-price-mod
 import { fromLanding } from '../shared/store/selectors';
 import { Subject, takeUntil } from 'rxjs';
 import { BooksModel } from '../app.model';
+import { CouponManagementComponent } from './coupon-management/coupon-management.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,9 @@ import { BooksModel } from '../app.model';
 export class DashboardComponent implements OnInit {
   @ViewChild(UpdatePriceModalComponent)
   updatePriceModal!: UpdatePriceModalComponent;
+  @ViewChild(CouponManagementComponent)
+  couponManagement!: CouponManagementComponent;
+
   public selectBook$ = this.store.select(fromLanding.selectBook);
 
   public book: BooksModel = {
@@ -60,6 +64,10 @@ export class DashboardComponent implements OnInit {
         price: event.newPrice,
       })
     );
+  }
+
+  openCouponManagement() {
+    this.couponManagement.openDialog();
   }
 
   logOut() {

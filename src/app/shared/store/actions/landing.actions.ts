@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { BooksModel, PurchasesModel } from '../../../app.model';
+import { BooksModel, CopounModel, PurchasesModel } from '../../../app.model';
 
 const actor = '[Landing Silvia]';
 
@@ -110,5 +110,73 @@ export const updatePriceBookSuccess = createAction(
 
 export const updatePriceBookFailure = createAction(
   `${actor} Update Price Book Failure`,
+  props<{ error: string }>()
+);
+
+export const selectCopouns = createAction(`${actor} Select Coupons`);
+
+export const selectCopounsSuccess = createAction(
+  `${actor} Select Coupons Success`,
+  props<{ coupons: CopounModel[] }>()
+);
+
+export const selectCopounsFailure = createAction(
+  `${actor} Select Coupons Failure`,
+  props<{ error: string }>()
+);
+
+export const insertCoupon = createAction(
+  `${actor} Insert Coupon`,
+  props<{
+    id_books: number;
+    value: string;
+    discount: number;
+    expiration_date: string;
+  }>()
+);
+
+export const insertCouponSuccess = createAction(
+  `${actor} Insert Coupon Success`,
+  props<{ coupons: CopounModel[] }>()
+);
+
+export const insertCouponFailure = createAction(
+  `${actor} Insert Coupon Failure`,
+  props<{ error: string }>()
+);
+
+export const updateCopoun = createAction(
+  `${actor} Update Coupon`,
+  props<{
+    id_books_coupons: number;
+    id_books: number;
+    value: string;
+    discount: number;
+    expiration_date: string;
+  }>()
+);
+
+export const updateCopounSuccess = createAction(
+  `${actor} Update Coupon Success`,
+  props<{ coupons: CopounModel[] }>()
+);
+
+export const updateCopounFailure = createAction(
+  `${actor} Update Coupon Failure`,
+  props<{ error: string }>()
+);
+
+export const deleteCopoun = createAction(
+  `${actor} Delete Coupon`,
+  props<{ id_books_coupons: number }>()
+);
+
+export const deleteCopounSuccess = createAction(
+  `${actor} Delete Coupon Success`,
+  props<{ coupons: CopounModel[] }>()
+);
+
+export const deleteCopounFailure = createAction(
+  `${actor} Delete Coupon Failure`,
   props<{ error: string }>()
 );

@@ -53,6 +53,12 @@
               <button class="btn btn-dark" (click)="openUpdatePriceModal()">
                 Actualizar Precio
               </button>
+              <button
+                class="btn btn-dark ms-2"
+                (click)="openCouponManagement()"
+              >
+                Gestionar Cupones
+              </button>
               <h5 class="text-end text-muted">
                 Precio actual del libro:
                 <strong class="btn btn-outline-dark">${{ book.price }}</strong>
@@ -66,6 +72,7 @@
     <app-update-price-modal
       (priceUpdated)="handlePriceUpdate($event)"
     ></app-update-price-modal>
+    <app-coupon-management></app-coupon-management>
     <div class="row">
       <div class="col-sm-12">
         <app-purchases-view></app-purchases-view>

@@ -141,6 +141,90 @@ export class LandingEffects {
     );
   });
 
+  selectCoupons$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.selectCopouns),
+      switchMap(({}) => {
+        return this.landingService.getCoupons().pipe(
+          map((response) => {
+            return LandingActions.selectCopounsSuccess({
+              coupons: response,
+            });
+          }),
+          catchError((error) => {
+            return of(LandingActions.selectCopounsFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
+  insertCoupon$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.insertCoupon),
+      switchMap(({ id_books, value, discount, expiration_date }) => {
+        return this.landingService
+          .insertCoupon(id_books, value, discount, expiration_date)
+          .pipe(
+            map((response) => {
+              return LandingActions.insertCouponSuccess({
+                coupons: response,
+              });
+            }),
+            catchError((error) => {
+              return of(LandingActions.insertCouponFailure({ error }));
+            })
+          );
+      })
+    );
+  });
+
+  updateCoupon$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.updateCopoun),
+      switchMap(
+        ({ id_books_coupons, id_books, value, discount, expiration_date }) => {
+          return this.landingService
+            .updateCoupon(
+              id_books_coupons,
+              id_books,
+              value,
+              discount,
+              expiration_date
+            )
+            .pipe(
+              map((response) => {
+                return LandingActions.updateCopounSuccess({
+                  coupons: response,
+                });
+              }),
+              catchError((error) => {
+                return of(LandingActions.updateCopounFailure({ error }));
+              })
+            );
+        }
+      )
+    );
+  });
+
+  deleteCoupon$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.deleteCopoun),
+      switchMap(({ id_books_coupons }) => {
+        return this.landingService.deleteCoupon(id_books_coupons).pipe(
+          map((response) => {
+            return LandingActions.deleteCopounSuccess({
+              coupons: response,
+            });
+          }),
+          catchError((error) => {
+            return of(LandingActions.deleteCopounFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private store: Store,

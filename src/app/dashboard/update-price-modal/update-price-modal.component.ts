@@ -49,6 +49,7 @@ export class UpdatePriceModalComponent {
       this.priceUpdated.emit(this.pendingUpdate);
       this.pendingUpdate = null;
       this.confirmDisplay = false;
+      this.updatePriceForm.reset();
     }
   }
 }

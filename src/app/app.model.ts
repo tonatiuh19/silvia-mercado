@@ -8,6 +8,7 @@ export interface LandingState {
   admin: AdminModel;
   books?: BooksModel[];
   purchases: PurchasesModel[];
+  coupons: CopounModel[];
   book: BooksModel;
 }
 
@@ -34,4 +35,14 @@ export interface PurchasesModel {
   stripe_id: string;
   date: string;
   title: string;
+}
+
+export interface CopounModel {
+  id_books_coupons: number;
+  id_books: number;
+  value: string;
+  discount: number;
+  active: number;
+  expiration_date: string;
+  date: string;
 }

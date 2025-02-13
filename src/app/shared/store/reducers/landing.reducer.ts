@@ -213,5 +213,96 @@ export const LandingReducer = createRehydrateReducer(
       isLoading: false,
       isError: true,
     };
+  }),
+  on(LandingActions.selectCopouns, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(
+    LandingActions.selectCopounsSuccess,
+    (state: LandingState, { coupons }) => {
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        coupons,
+      };
+    }
+  ),
+  on(LandingActions.selectCopounsFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
+  }),
+  on(LandingActions.insertCoupon, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(LandingActions.insertCouponSuccess, (state: LandingState, { coupons }) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      coupons: coupons,
+    };
+  }),
+  on(LandingActions.insertCouponFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
+  }),
+  on(LandingActions.updateCopoun, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(LandingActions.updateCopounSuccess, (state: LandingState, { coupons }) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      coupons,
+    };
+  }),
+  on(LandingActions.updateCopounFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
+  }),
+  on(LandingActions.deleteCopoun, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(LandingActions.deleteCopounSuccess, (state: LandingState, { coupons }) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      coupons,
+    };
+  }),
+  on(LandingActions.deleteCopounFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
   })
 );
