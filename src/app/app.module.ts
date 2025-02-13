@@ -16,6 +16,8 @@ import { StoreModule as NgrxStoreModule } from '@ngrx/store';
 import { LandingStoreModule } from './shared/store/landing.store.module';
 import { provideHttpClient } from '@angular/common/http';
 import { LoadingMaskModule } from './shared/components/loading-mask/loading-mask.module';
+import { LoginModule } from './login/login.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +37,8 @@ import { LoadingMaskModule } from './shared/components/loading-mask/loading-mask
       maxAge: 25,
     }),
     LoadingMaskModule,
+    LoginModule,
+    DashboardModule,
   ],
   providers: [
     provideHttpClient(),
@@ -42,6 +46,9 @@ import { LoadingMaskModule } from './shared/components/loading-mask/loading-mask
     providePrimeNG({
       theme: {
         preset: Aura,
+        options: {
+          darkModeSelector: false || 'none',
+        },
       },
     }),
   ],

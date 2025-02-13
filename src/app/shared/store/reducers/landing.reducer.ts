@@ -85,5 +85,111 @@ export const LandingReducer = createRehydrateReducer(
       ...state,
       isPaid: null,
     };
+  }),
+  on(LandingActions.sendCodeEmail, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(LandingActions.sendCodeEmailSuccess, (state: LandingState, { admin }) => {
+    return {
+      ...state,
+      admin: {
+        ...state.admin,
+        isUserValid: admin,
+      },
+      isLoading: false,
+      isError: false,
+    };
+  }),
+  on(LandingActions.sendCodeEmailFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
+  }),
+  on(LandingActions.resetAdmin, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      admin: {
+        isUserValid: false,
+        isCodeValid: false,
+        id_books_admin: 0,
+        name: '',
+        email: '',
+      },
+    };
+  }),
+  on(LandingActions.validateSessionCode, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(
+    LandingActions.validateSessionCodeSuccess,
+    (state: LandingState, { admin }) => {
+      if (!admin) {
+        return {
+          ...state,
+          admin: {
+            ...state.admin,
+            isCodeValid: admin,
+          },
+          isLoading: false,
+          isError: false,
+        };
+      }
+      return {
+        ...state,
+        admin: {
+          ...state.admin,
+          isCodeValid: true,
+          id_books_admin: admin.id_books_admin,
+          name: admin.name,
+          email: admin.email,
+        },
+        isLoading: false,
+        isError: false,
+      };
+    }
+  ),
+  on(LandingActions.validateSessionCodeFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
+  }),
+  on(LandingActions.getPurchases, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(
+    LandingActions.getPurchasesSuccess,
+    (state: LandingState, { purchases }) => {
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        purchases,
+      };
+    }
+  ),
+  on(LandingActions.getPurchasesFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
   })
 );

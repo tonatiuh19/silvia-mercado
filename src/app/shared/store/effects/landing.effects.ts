@@ -68,6 +68,60 @@ export class LandingEffects {
     );
   });
 
+  sendCodeEmail$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.sendCodeEmail),
+      switchMap(({ email }) => {
+        return this.landingService.sendCodeEmail(email).pipe(
+          map((response) => {
+            return LandingActions.sendCodeEmailSuccess({
+              admin: response,
+            });
+          }),
+          catchError((error) => {
+            return of(LandingActions.sendCodeEmailFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
+  validateSessionCode$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.validateSessionCode),
+      switchMap(({ code, email }) => {
+        return this.landingService.validateSessionCode(code, email).pipe(
+          map((response) => {
+            return LandingActions.validateSessionCodeSuccess({
+              admin: response,
+            });
+          }),
+          catchError((error) => {
+            return of(LandingActions.validateSessionCodeFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
+  getPurchases$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.getPurchases),
+      switchMap(({}) => {
+        return this.landingService.getPurchases().pipe(
+          map((response) => {
+            return LandingActions.getPurchasesSuccess({
+              purchases: response,
+            });
+          }),
+          catchError((error) => {
+            return of(LandingActions.getPurchasesFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private store: Store,

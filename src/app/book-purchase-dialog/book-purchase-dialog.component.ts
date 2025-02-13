@@ -7,7 +7,11 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faLock, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLock,
+  faChevronRight,
+  faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StripeService } from '../shared/services/stripe.service';
 import { Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
@@ -32,6 +36,7 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
 
   faLock = faLock;
   faChevronRight = faChevronRight;
+  faSpinner = faSpinner;
 
   purchaseForm!: FormGroup;
   checkoutForm!: FormGroup;
@@ -122,7 +127,6 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   }
 
   async handlePayment() {
-    this.isLoadingCheckout = true;
     if (!this.stripe || !this.card) {
       return;
     }
@@ -130,12 +134,11 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     const { token, error } = await this.stripe.createToken(this.card);
 
     if (this.purchaseForm.valid) {
+      this.isLoadingCheckout = true;
       if (error) {
-        this.isLoadingCheckout = false;
         this.isStripeError = true;
         this.stripeErrorMessage = error.message || '';
       } else {
-        this.isLoadingCheckout = true;
         this.isStripeError = false;
 
         console.log('Token generated', token);
@@ -163,6 +166,7 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   }
 
   retryPayment() {
+    this.isLoadingCheckout = false;
     this.isStripeError = false;
     this.stripeErrorMessage = '';
     this.unmountStripe();
@@ -178,6 +182,7 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   }
 
   goBack() {
+    this.isLoadingCheckout = false;
     this.store.dispatch(LandingActions.resetPurchase());
     this.closeDialog();
   }

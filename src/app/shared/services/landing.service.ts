@@ -10,6 +10,9 @@ export class LandingService {
   public GET_BOOKS = `${DOMAIN}/getAllBooks.php`;
   public GET_BOOK_BY_ID = `${DOMAIN}/getBookById.php`;
   public INSERT_PURCHASE = `${DOMAIN}/insertPurchase.php`;
+  public SEND_CODE_EMAIL = `${DOMAIN}/sendCodeByMail.php`;
+  public VALIDATE_CODE = `${DOMAIN}/validateSessionCode.php`;
+  public GET_PURCHASES = `${DOMAIN}/getPurchases.php`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -51,5 +54,29 @@ export class LandingService {
           return response;
         })
       );
+  }
+
+  public sendCodeEmail(email: string): Observable<any> {
+    return this.httpClient.post(this.SEND_CODE_EMAIL, { email }).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
+  public validateSessionCode(code: string, email: string): Observable<any> {
+    return this.httpClient.post(this.VALIDATE_CODE, { code, email }).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
+  public getPurchases(): Observable<any> {
+    return this.httpClient.post(this.GET_PURCHASES, {}).pipe(
+      map((response) => {
+        return response;
+      })
+    );
   }
 }

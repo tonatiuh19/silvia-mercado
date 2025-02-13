@@ -24,3 +24,13 @@ export const selectIsPaid = createSelector(
   selectLandingState,
   (state: LandingState) => state.isPaid
 );
+
+export const selectAdmin = createSelector(
+  selectLandingState,
+  (state: LandingState) => state.admin
+);
+
+export const selectPurchases = createSelector(
+  selectLandingState,
+  (state: LandingState) => state.purchases
+);

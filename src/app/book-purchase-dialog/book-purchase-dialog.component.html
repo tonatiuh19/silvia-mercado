@@ -85,10 +85,19 @@
                   </label>
                 </div>
                 <button
+                  *ngIf="!isLoadingCheckout"
                   type="submit"
                   class="btn btn-light btn-lg w-100 custom-button"
                 >
                   <fa-icon [icon]="faLock"></fa-icon> Adquirir libro
+                </button>
+                <button
+                  *ngIf="isLoadingCheckout"
+                  type="submit"
+                  class="btn btn-light btn-lg w-100 custom-button"
+                  disabled
+                >
+                  Pagando...
                 </button>
               </form>
             </div>
