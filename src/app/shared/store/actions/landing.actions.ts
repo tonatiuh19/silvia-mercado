@@ -97,3 +97,18 @@ export const getPurchasesFailure = createAction(
   `${actor} Get Purchases Failure`,
   props<{ error: string }>()
 );
+
+export const updatePriceBook = createAction(
+  `${actor} Update Price Book`,
+  props<{ id_books: number; price: string }>()
+);
+
+export const updatePriceBookSuccess = createAction(
+  `${actor} Update Price Book Success`,
+  props<{ book: BooksModel }>()
+);
+
+export const updatePriceBookFailure = createAction(
+  `${actor} Update Price Book Failure`,
+  props<{ error: string }>()
+);

@@ -13,6 +13,7 @@ export class LandingService {
   public SEND_CODE_EMAIL = `${DOMAIN}/sendCodeByMail.php`;
   public VALIDATE_CODE = `${DOMAIN}/validateSessionCode.php`;
   public GET_PURCHASES = `${DOMAIN}/getPurchases.php`;
+  public UPDATE_PRICE = `${DOMAIN}/updatePriceBook.php`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -74,6 +75,14 @@ export class LandingService {
 
   public getPurchases(): Observable<any> {
     return this.httpClient.post(this.GET_PURCHASES, {}).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
+  public updatePriceBook(id_books: number, price: string): Observable<any> {
+    return this.httpClient.post(this.UPDATE_PRICE, { id_books, price }).pipe(
       map((response) => {
         return response;
       })

@@ -191,5 +191,27 @@ export const LandingReducer = createRehydrateReducer(
       isLoading: false,
       isError: true,
     };
+  }),
+  on(LandingActions.updatePriceBook, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(LandingActions.updatePriceBookSuccess, (state: LandingState, { book }) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: false,
+      book,
+    };
+  }),
+  on(LandingActions.updatePriceBookFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
   })
 );

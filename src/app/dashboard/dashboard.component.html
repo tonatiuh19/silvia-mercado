@@ -45,6 +45,27 @@
         </div>
       </div>
     </div>
+    <div class="row text-center py-5">
+      <div class="col-sm-12">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <button class="btn btn-dark" (click)="openUpdatePriceModal()">
+                Actualizar Precio
+              </button>
+              <h5 class="text-end text-muted">
+                Precio actual del libro:
+                <strong class="btn btn-outline-dark">${{ book.price }}</strong>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-update-price-modal
+      (priceUpdated)="handlePriceUpdate($event)"
+    ></app-update-price-modal>
     <div class="row">
       <div class="col-sm-12">
         <app-purchases-view></app-purchases-view>

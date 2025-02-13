@@ -5,6 +5,8 @@
       <th>Nombre</th>
       <th>Email</th>
       <th>Precio</th>
+      <th>Fecha de compra</th>
+      <th>Stripe ID</th>
     </tr>
   </ng-template>
   <ng-template let-purchase pTemplate="body">
@@ -13,6 +15,8 @@
       <td>{{ purchase.name }}</td>
       <td>{{ purchase.email }}</td>
       <td>{{ purchase.price | currency }}</td>
+      <td>{{ purchase.date }}</td>
+      <td>{{ purchase.stripe_id }}</td>
     </tr>
   </ng-template>
 </p-table>

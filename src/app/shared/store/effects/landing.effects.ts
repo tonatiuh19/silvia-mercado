@@ -122,6 +122,25 @@ export class LandingEffects {
     );
   });
 
+  updatePriceBook$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.updatePriceBook),
+      withLatestFrom(this.store.select(fromLanding.selectBook)),
+      switchMap(([{ price }, book]) => {
+        return this.landingService.updatePriceBook(book.id_books, price).pipe(
+          map((response) => {
+            return LandingActions.updatePriceBookSuccess({
+              book: response,
+            });
+          }),
+          catchError((error) => {
+            return of(LandingActions.updatePriceBookFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private store: Store,
