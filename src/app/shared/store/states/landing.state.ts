@@ -21,4 +21,8 @@ export const initialLandingState: LandingState = {
   },
   purchases: [],
   coupons: [],
+  individualCoupon: {
+    id_books_coupons: 0,
+    discount: 0,
+  },
 };

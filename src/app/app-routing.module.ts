@@ -4,8 +4,10 @@ import { LandingComponent } from './landing/landing.component';
 import { BookPurchaseDialogComponent } from './book-purchase-dialog/book-purchase-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 const routes: Routes = [
+  //{ path: '', component: ComingSoonComponent },
   { path: '', component: LandingComponent },
   { path: 'finanzasfelices', component: BookPurchaseDialogComponent },
   { path: 'admin', component: LoginComponent },

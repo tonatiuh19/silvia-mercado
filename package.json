@@ -28,6 +28,7 @@
     "@stripe/stripe-js": "^5.6.0",
     "bootstrap": "^5.3.3",
     "ng-recaptcha": "^13.2.1",
+    "ngx-owl-carousel-o": "^19.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^19.0.6",
     "rxjs": "~7.8.0",

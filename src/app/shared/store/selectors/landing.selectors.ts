@@ -39,3 +39,8 @@ export const selectCoupons = createSelector(
   selectLandingState,
   (state: LandingState) => state.coupons
 );
+
+export const selectIndividualCoupon = createSelector(
+  selectLandingState,
+  (state: LandingState) => state.individualCoupon
+);

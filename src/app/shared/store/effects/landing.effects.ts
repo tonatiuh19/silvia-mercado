@@ -225,6 +225,24 @@ export class LandingEffects {
     );
   });
 
+  validateCouponSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LandingActions.validateCoupon),
+      switchMap(({ coupon }) => {
+        return this.landingService.validateCoupon(coupon).pipe(
+          map((response) => {
+            return LandingActions.validateCouponSuccess({
+              individualCoupon: response,
+            });
+          }),
+          catchError((error) => {
+            return of(LandingActions.validateCouponFailure({ error }));
+          })
+        );
+      })
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private store: Store,

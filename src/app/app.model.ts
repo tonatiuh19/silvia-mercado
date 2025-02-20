@@ -9,6 +9,7 @@ export interface LandingState {
   books?: BooksModel[];
   purchases: PurchasesModel[];
   coupons: CopounModel[];
+  individualCoupon: CouponValidationModel;
   book: BooksModel;
 }
 
@@ -45,4 +46,9 @@ export interface CopounModel {
   active: number;
   expiration_date: string;
   date: string;
+}
+
+export interface CouponValidationModel {
+  id_books_coupons: number;
+  discount: number;
 }

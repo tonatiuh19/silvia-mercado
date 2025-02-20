@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { PaymentSuccessModule } from './payment-success/payment-success.module';
 import { PaymentFailureModule } from './payment-failure/payment-failure.module';
+import { ApplyCouponModalModule } from './apply-coupon-modal/apply-coupon-modal.module';
 
 @NgModule({
   declarations: [BookPurchaseDialogComponent],
@@ -22,6 +23,7 @@ import { PaymentFailureModule } from './payment-failure/payment-failure.module';
     RecaptchaFormsModule,
     PaymentSuccessModule,
     PaymentFailureModule,
+    ApplyCouponModalModule,
   ],
   exports: [BookPurchaseDialogComponent],
 })

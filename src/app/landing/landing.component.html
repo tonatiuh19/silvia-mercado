@@ -1,5 +1,33 @@
+<header class="header bg-dark py-3 fade-in">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="logo">
+      <h1 class="text-white">
+        <a href="#goTop" class="a-no-underline"
+          ><strong>Silvia</strong> Mercado</a
+        >
+      </h1>
+    </div>
+    <div class="header-buttons">
+      <button
+        class="btn btn-light btn-sm m-1 btn-contact"
+        (click)="openWhatsAppChat()"
+      >
+        <fa-icon *ngIf="isMobile" [icon]="faContactCard"></fa-icon>
+        <span *ngIf="!isMobile">Contactame</span>
+      </button>
+      <button
+        *ngIf="showFinanceButton"
+        class="btn btn-light btn-sm m-1 btn-finance"
+        (click)="showDialog()"
+      >
+        <span *ngIf="isMobile">Compar libro</span>
+        <span *ngIf="!isMobile">Quiero mejorar mis finanzas</span>
+      </button>
+    </div>
+  </div>
+</header>
 <section
-  class="d-flex justify-content-center align-items-center main-container pt-5 bg-dark"
+  class="d-flex justify-content-center align-items-center main-container bg-dark fade-in"
   id="goTop"
 >
   <div class="container py-vh-4 position-relative mt-5 px-vw-5 text-center">
@@ -8,7 +36,7 @@
     >
       <div class="col-12 col-xl-10" id="target-element">
         <div class="row">
-          <div class="col-6 text-container text-end text-white">
+          <div class="col-sm-6 text-container text-end text-white">
             <div class="container">
               <div class="row">
                 <div class="col-sm-12">
@@ -19,36 +47,19 @@
                 </div>
               </div>
               <div class="row mt-5">
-                <div class="col-sm-12">
-                  <div
-                    id="quoteCarousel"
-                    class="carousel slide"
-                    data-bs-ride="carousel"
-                    data-bs-interval="3000"
+                <div class="col-12">
+                  <button
+                    class="btn btn-light btn-large m-1"
+                    (click)="showDialog()"
                   >
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <p class="quote-text">
-                          <em>"Quote 1: This is the first quote."</em>
-                        </p>
-                      </div>
-                      <div class="carousel-item">
-                        <p class="quote-text">
-                          <em>"Quote 2: This is the second quote."</em>
-                        </p>
-                      </div>
-                      <div class="carousel-item">
-                        <p class="quote-text">
-                          <em>"Quote 3: This is the third quote."</em>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                    Quiero mejorar mis finanzas
+                  </button>
                 </div>
               </div>
+              <div class="row" id="button-enter"></div>
             </div>
           </div>
-          <div class="col-6 image-container">
+          <div class="col-sm-6 image-container">
             <img
               src="https://garbrix.com/silvia/assets/images/IMG-20250117-WA0016.png"
               alt="landing-image"
@@ -56,21 +67,21 @@
             />
           </div>
         </div>
-        <div class="row mt-3">
-          <div class="col-12">
-            <a href="#vermas" class="btn btn-light btn-lg m-1"
-              >¡Quiero saber más!</a
-            >
-            <button class="btn btn-light btn-lg m-1" (click)="showDialog()">
-              Comprar libro
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </section>
-<section class="bg-light py-5" id="vermas">
+<section class="bg-light py-5 fade-in" id="logos">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h4 class="h4-strong mb-2">Empresas que han confiado en mi:</h4>
+        <app-infinite-svg-carousel></app-infinite-svg-carousel>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-light py-5 fade-in" id="vermas">
   <div class="container my-5">
     <div class="row my-5">
       <div class="col-sm-12">
@@ -91,7 +102,7 @@
   </div>
 </section>
 <section
-  class="d-flex justify-content-center align-items-center main-container pt-5 bg-dark"
+  class="d-flex justify-content-center align-items-center main-container pt-5 bg-dark fade-in"
   id="vermas"
 >
   <div class="container py-vh-4 position-relative mt-5 px-vw-5 text-center">
@@ -100,19 +111,14 @@
     >
       <div class="col-12 col-xl-10" id="target-element">
         <div class="row">
-          <div class="col-sm-12">
-            <h1 class="text-white main-title">Hola, soy Silvia Mercado</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6 image-container">
+          <div class="col-sm-6 image-container">
             <img
               src="https://garbrix.com/silvia/assets/images/IMG-20250117-WA0026.png"
               alt="landing-image"
               class="img-fluid"
             />
           </div>
-          <div class="col-6 text-container text-white">
+          <div class="col-sm-6 text-container text-white">
             <div class="container">
               <div class="row">
                 <div class="col-sm-12">

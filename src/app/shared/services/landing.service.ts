@@ -18,6 +18,7 @@ export class LandingService {
   public INSERT_COUPON = `${DOMAIN}/insertCopoun.php`;
   public UPDATE_COUPON = `${DOMAIN}/updateCopoun.php`;
   public DELETE_COUPON = `${DOMAIN}/deleteCopoun.php`;
+  public VALIDATE_COUPON = `${DOMAIN}/validateCopoun.php`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -145,6 +146,14 @@ export class LandingService {
 
   public deleteCoupon(id_books_coupons: number): Observable<any> {
     return this.httpClient.post(this.DELETE_COUPON, { id_books_coupons }).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
+  public validateCoupon(value: string): Observable<any> {
+    return this.httpClient.post(this.VALIDATE_COUPON, { value }).pipe(
       map((response) => {
         return response;
       })

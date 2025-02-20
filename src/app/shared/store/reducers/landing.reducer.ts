@@ -304,5 +304,46 @@ export const LandingReducer = createRehydrateReducer(
       isLoading: false,
       isError: true,
     };
+  }),
+  on(LandingActions.validateCoupon, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: true,
+      isError: false,
+    };
+  }),
+  on(
+    LandingActions.validateCouponSuccess,
+    (state: LandingState, { individualCoupon }) => {
+      if (!individualCoupon) {
+        return {
+          ...state,
+          isLoading: false,
+          isError: false,
+        };
+      }
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        individualCoupon,
+      };
+    }
+  ),
+  on(LandingActions.validateCouponFailure, (state: LandingState, {}) => {
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+    };
+  }),
+  on(LandingActions.resetCouponValidation, (state: LandingState, {}) => {
+    return {
+      ...state,
+      individualCoupon: {
+        id_books_coupons: 0,
+        discount: 0,
+      },
+    };
   })
 );

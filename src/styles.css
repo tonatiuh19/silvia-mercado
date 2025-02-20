@@ -201,13 +201,20 @@
 }
 
 @font-face {
-  font-family: "Kanit Regular";
-  src: url("./app/shared/assets/fonts/Kanit-Regular.ttf") format("truetype");
+  font-family: "Raleway-Regular";
+  src: url("./app/shared/assets/fonts/Raleway/static/Raleway-Regular.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway-Bold";
+  src: url("./app/shared/assets/fonts/Raleway/static/Raleway-Bold.ttf")
+    format("truetype");
 }
 
 body {
   margin: 0;
-  font-family: "Kanit Regular", sans-serif;
+  font-family: "Raleway-Regular", sans-serif;
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);

@@ -1,5 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { BooksModel, CopounModel, PurchasesModel } from '../../../app.model';
+import {
+  BooksModel,
+  CopounModel,
+  CouponValidationModel,
+  PurchasesModel,
+} from '../../../app.model';
 
 const actor = '[Landing Silvia]';
 
@@ -179,4 +184,23 @@ export const deleteCopounSuccess = createAction(
 export const deleteCopounFailure = createAction(
   `${actor} Delete Coupon Failure`,
   props<{ error: string }>()
+);
+
+export const validateCoupon = createAction(
+  `${actor} Validate Coupon`,
+  props<{ coupon: string }>()
+);
+
+export const validateCouponSuccess = createAction(
+  `${actor} Validate Coupon Success`,
+  props<{ individualCoupon: CouponValidationModel }>()
+);
+
+export const validateCouponFailure = createAction(
+  `${actor} Validate Coupon Failure`,
+  props<{ error: string }>()
+);
+
+export const resetCouponValidation = createAction(
+  `${actor} Reset Coupon Validation`
 );

@@ -18,6 +18,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { LoadingMaskModule } from './shared/components/loading-mask/loading-mask.module';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ComingSoonModule } from './coming-soon/coming-soon.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,6 +40,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     LoadingMaskModule,
     LoginModule,
     DashboardModule,
+    ComingSoonModule,
   ],
   providers: [
     provideHttpClient(),

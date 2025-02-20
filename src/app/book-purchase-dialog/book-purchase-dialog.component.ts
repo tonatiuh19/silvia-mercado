@@ -5,6 +5,7 @@ import {
   EventEmitter,
   OnInit,
   AfterViewInit,
+  ViewChild,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -18,8 +19,10 @@ import { Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
 import { Store } from '@ngrx/store';
 import { fromLanding } from '../shared/store/selectors';
 import { Subject, takeUntil } from 'rxjs';
-import { BooksModel } from '../app.model';
+import { BooksModel, CopounModel, CouponValidationModel } from '../app.model';
 import { LandingActions } from '../shared/store/actions';
+import { ApplyCouponModalComponent } from './apply-coupon-modal/apply-coupon-modal.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-book-purchase-dialog',
@@ -28,11 +31,19 @@ import { LandingActions } from '../shared/store/actions';
   standalone: false,
 })
 export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
+  @ViewChild(ApplyCouponModalComponent)
+  applyCouponModalComponent!: ApplyCouponModalComponent;
+
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
 
+  showApplyCouponModal: boolean = false;
+
   public selectBook$ = this.store.select(fromLanding.selectBook);
   public selectIsPaid$ = this.store.select(fromLanding.selectIsPaid);
+  public selectIndividualCoupon$ = this.store.select(
+    fromLanding.selectIndividualCoupon
+  );
 
   faLock = faLock;
   faChevronRight = faChevronRight;
@@ -40,6 +51,11 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
 
   purchaseForm!: FormGroup;
   checkoutForm!: FormGroup;
+
+  couponCode: CouponValidationModel = {
+    id_books_coupons: 0,
+    discount: 0,
+  };
 
   public isStripeError = false;
   public isLoadingCheckout = false;
@@ -66,10 +82,13 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private stripeService: StripeService,
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Silvia Mercado: Finanzas Felices');
+
     this.checkoutForm = this.fb.group({});
     this.purchaseForm = this.fb.group({
       name: ['', Validators.required],
@@ -85,6 +104,11 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     this.selectBook$.pipe(takeUntil(this.unsubscribe$)).subscribe((book) => {
       this.book = book;
     });
+    this.selectIndividualCoupon$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((coupon) => {
+        this.couponCode = coupon;
+      });
   }
 
   ngAfterViewInit(): void {
@@ -185,5 +209,26 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     this.isLoadingCheckout = false;
     this.store.dispatch(LandingActions.resetPurchase());
     this.closeDialog();
+  }
+
+  openCouponModal() {
+    this.showApplyCouponModal = true;
+    console.log('Open coupon modal');
+    this.applyCouponModalComponent.openModal();
+  }
+
+  closeCouponModal() {
+    this.showApplyCouponModal = false;
+  }
+
+  onCouponModalHide() {
+    this.closeCouponModal();
+  }
+
+  applyingCoupon(event: string) {
+    console.log('Coupon code', event);
+    this.applyCouponModalComponent.closeModal();
+    this.applyCouponModalComponent.resetForm();
+    // Your existing code
   }
 }
