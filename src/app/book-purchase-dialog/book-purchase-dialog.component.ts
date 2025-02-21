@@ -60,6 +60,8 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     discount: 0,
   };
 
+  bookPrice = 0;
+
   public isStripeError = false;
   public isLoadingCheckout = false;
   public stripeErrorMessage = '';
@@ -108,11 +110,17 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     );
     this.selectBook$.pipe(takeUntil(this.unsubscribe$)).subscribe((book) => {
       this.book = book;
+      this.bookPrice = book.price;
     });
     this.selectIndividualCoupon$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((coupon) => {
-        this.couponCode = coupon;
+        if (coupon && typeof coupon !== 'boolean') {
+          this.couponCode = coupon;
+          this.bookPrice =
+            this.bookPrice - this.bookPrice * (coupon.discount / 100);
+        }
+        console.log('Coupon code', this.couponCode);
       });
   }
 
@@ -157,6 +165,20 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   }
 
   async handlePayment() {
+    if (this.bookPrice === 0) {
+      this.store.dispatch(
+        LandingActions.insertPurchase({
+          id_books: this.book.id_books,
+          name: this.purchaseForm.get('name')?.value,
+          email: this.purchaseForm.get('email')?.value,
+          price: this.bookPrice.toString(),
+          token: '',
+          payment_type: 'stripe',
+        })
+      );
+      return;
+    }
+
     if (!this.stripe || !this.card) {
       return;
     }
@@ -177,7 +199,7 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
             id_books: this.book.id_books,
             name: this.purchaseForm.get('name')?.value,
             email: this.purchaseForm.get('email')?.value,
-            price: this.book.price.toString(),
+            price: this.bookPrice.toString(),
             token: token.id,
             payment_type: 'stripe',
           })
@@ -233,6 +255,11 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
 
   applyingCoupon(event: string) {
     console.log('Coupon code', event);
+    this.store.dispatch(
+      LandingActions.validateCoupon({
+        coupon: event,
+      })
+    );
     this.applyCouponModalComponent.closeModal();
     this.applyCouponModalComponent.resetForm();
     // Your existing code

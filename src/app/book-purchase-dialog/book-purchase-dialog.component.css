@@ -189,3 +189,8 @@
     font-size: 1.5rem; /* Adjust the font size for mobile devices */
   }
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

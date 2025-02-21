@@ -9,7 +9,7 @@ export interface LandingState {
   books?: BooksModel[];
   purchases: PurchasesModel[];
   coupons: CopounModel[];
-  individualCoupon: CouponValidationModel;
+  individualCoupon: CouponValidationModel | boolean;
   book: BooksModel;
 }
 
