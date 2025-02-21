@@ -35,8 +35,8 @@
 
 @media (max-width: 768px) {
   .main-container {
-    padding-top: 250px; /* Adjust padding for mobile devices */
-    height: 80vh;
+    padding-top: 150px; /* Adjust padding for mobile devices */
+    height: 100vh;
   }
 }
 
@@ -78,7 +78,7 @@
 
 @media (max-width: 768px) {
   .image-container img {
-    max-width: 80%; /* Adjust image size for mobile devices */
+    max-width: 50%; /* Adjust image size for mobile devices */
     padding-bottom: 20px;
   }
 

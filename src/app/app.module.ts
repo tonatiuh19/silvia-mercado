@@ -19,6 +19,7 @@ import { LoadingMaskModule } from './shared/components/loading-mask/loading-mask
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ComingSoonModule } from './coming-soon/coming-soon.module';
+import { PrivacyTermsModule } from './shared/privacy-terms/privacy-terms.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,7 @@ import { ComingSoonModule } from './coming-soon/coming-soon.module';
     LoginModule,
     DashboardModule,
     ComingSoonModule,
+    PrivacyTermsModule,
   ],
   providers: [
     provideHttpClient(),

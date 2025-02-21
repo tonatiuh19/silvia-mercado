@@ -12,7 +12,7 @@
         <div class="container-fluid px-5">
           <div class="row">
             <div class="col-sm-12">
-              <h4 class="text-center text-white">
+              <h4 class="text-center text-white padding-top-mobile">
                 “Finanzas Felices” no es solo un libro, es una guía para
                 transformar tu relación con el dinero. Descubre el método
                 F.E.L.I.Z. y aprende a manejar tus finanzas con estrategia,
@@ -79,21 +79,25 @@
                 </div>
                 <div class="form-group mt-5 mb-2 form-check text-center">
                   <label class="form-check-label text-white" for="terms">
-                    Al pagar aceptas los <a href="#">términos, condiciones</a> y
-                    <a href="#">aviso de privacidad</a>.
+                    Al pagar aceptas el
+                    <a
+                      (click)="goToPrivacyTerms()"
+                      style="text-decoration: underline"
+                      >aviso de privacidad</a
+                    >.
                   </label>
                 </div>
                 <button
                   *ngIf="!isLoadingCheckout"
                   type="submit"
-                  class="btn btn-light btn-lg w-100 custom-button"
+                  class="btn btn-light btn-lg w-100 custom-button margin-bottom-mobile"
                 >
                   <fa-icon [icon]="faLock"></fa-icon> Adquirir libro
                 </button>
                 <button
                   *ngIf="isLoadingCheckout"
                   type="submit"
-                  class="btn btn-light btn-lg w-100 custom-button"
+                  class="btn btn-light btn-lg w-100 custom-button margin-bottom-mobile"
                   disabled
                 >
                   Pagando...

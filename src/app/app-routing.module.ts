@@ -5,6 +5,7 @@ import { BookPurchaseDialogComponent } from './book-purchase-dialog/book-purchas
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { PrivacyTermsComponent } from './shared/privacy-terms/privacy-terms.component';
 
 const routes: Routes = [
   //{ path: '', component: ComingSoonComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'finanzasfelices', component: BookPurchaseDialogComponent },
   { path: 'admin', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'avisodeprivacidad', component: PrivacyTermsComponent },
 ];
 
 @NgModule({

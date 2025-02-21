@@ -6,6 +6,7 @@ import {
   OnInit,
   AfterViewInit,
   ViewChild,
+  Renderer2,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -38,6 +39,8 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   @Output() displayChange = new EventEmitter<boolean>();
 
   showApplyCouponModal: boolean = false;
+
+  isMobile: boolean = window.innerWidth <= 950;
 
   public selectBook$ = this.store.select(fromLanding.selectBook);
   public selectIsPaid$ = this.store.select(fromLanding.selectIsPaid);
@@ -83,10 +86,12 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     private stripeService: StripeService,
     private route: ActivatedRoute,
     private store: Store,
-    private titleService: Title
+    private titleService: Title,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
+    this.isMobileView();
     this.titleService.setTitle('Silvia Mercado: Finanzas Felices');
 
     this.checkoutForm = this.fb.group({});
@@ -116,6 +121,7 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy(): void {
+    this.renderer.removeStyle(document.body, 'overflow-x');
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
@@ -230,5 +236,21 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
     this.applyCouponModalComponent.closeModal();
     this.applyCouponModalComponent.resetForm();
     // Your existing code
+  }
+
+  isMobileView() {
+    this.isMobile = window.innerWidth <= 950;
+    if (this.isMobile) {
+      this.renderer.setStyle(document.body, 'overflow-x', 'hidden');
+    }
+  }
+
+  goToPrivacyTerms() {
+    window.open(
+      this.router.serializeUrl(
+        this.router.createUrlTree(['avisodeprivacidad'])
+      ),
+      '_blank'
+    );
   }
 }

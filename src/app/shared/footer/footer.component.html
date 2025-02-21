@@ -1,1 +1,62 @@
-<p>footer works!</p>
+<footer class="footer bg-dark text-white py-4">
+  <div class="container text-center">
+    <div class="row mb-3">
+      <div class="col">
+        <button
+          (click)="goToFacebook()"
+          target="_blank"
+          class="btn btn-outline-light mx-2"
+        >
+          <img
+            src="https://garbrix.com/silvia/assets/facebook_main.png"
+            alt="Facebook"
+            class="social-icon"
+          />
+        </button>
+        <button
+          (click)="goToInstagram()"
+          target="_blank"
+          class="btn btn-outline-light mx-2"
+        >
+          <img
+            src="https://garbrix.com/silvia/assets/instagram_main.png"
+            alt="Instagram"
+            class="social-icon"
+          />
+        </button>
+        <button
+          (click)="goToTikTok()"
+          target="_blank"
+          class="btn btn-outline-light mx-2"
+        >
+          <img
+            src="https://garbrix.com/silvia/assets/tiktok_main.png"
+            alt="TikTok"
+            class="social-icon"
+          />
+        </button>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <a (click)="goToPrivacyTerms()" style="text-decoration: underline"
+          >Aviso de privacidad</a
+        >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p class="small-text">Todos los derechos reservados.</p>
+        <p class="small-text mt-5">
+          Hecho con
+          <span class="text-danger bump-effect"
+            ><fa-icon [icon]="faHeart"></fa-icon
+          ></span>
+          <a (click)="goToGarbrix()" style="text-decoration: underline">
+            garbrix.com</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

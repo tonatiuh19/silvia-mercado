@@ -110,3 +110,82 @@
     transform: rotate(360deg);
   }
 }
+
+.padding-top-mobile {
+  padding-top: 0vh;
+}
+
+.margin-bottom-mobile {
+  margin-bottom: 0vh;
+}
+
+@media (max-width: 950px) {
+  .main-container {
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  .padding-top-mobile {
+    padding-top: 10vh;
+  }
+
+  .margin-bottom-mobile {
+    margin-bottom: 10vh;
+  }
+
+  .book-image {
+    display: none;
+  }
+
+  .custom-form {
+    width: 100%;
+  }
+
+  .custom-form .custom-input {
+    height: 40px;
+  }
+
+  .custom-input,
+  .custom-input-payment {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .custom-button {
+    margin-top: 15px;
+  }
+
+  .header {
+    position: absolute;
+    top: 5px;
+    right: 2px;
+  }
+
+  .close-button {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+  }
+
+  .col-sm-6 {
+    width: 100%;
+    padding: 0;
+  }
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 1.1rem; /* Adjust the font size for mobile devices */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Adjust the font size for mobile devices */
+  }
+}
