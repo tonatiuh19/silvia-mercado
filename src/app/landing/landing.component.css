@@ -42,7 +42,7 @@
 
 .a-no-underline {
   text-decoration: none;
-  color: white;
+  color: #212529;
 }
 
 .main-title {
@@ -78,7 +78,7 @@
 
 @media (max-width: 768px) {
   .image-container img {
-    max-width: 50%; /* Adjust image size for mobile devices */
+    max-width: 70%; /* Adjust image size for mobile devices */
     padding-bottom: 20px;
   }
 
@@ -119,4 +119,9 @@
     width: auto; /* Optional: Adjust width for mobile devices */
     height: auto; /* Optional: Adjust height for mobile devices */
   }
+}
+
+.whatsapp-icon {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
 }

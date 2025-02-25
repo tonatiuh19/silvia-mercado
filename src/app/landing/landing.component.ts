@@ -4,6 +4,7 @@ import {
   HostListener,
   OnInit,
   OnDestroy,
+  Renderer2,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -45,10 +46,12 @@ export class LandingComponent implements OnInit, OnDestroy {
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
+    this.isMobileView();
     this.titleService.setTitle('Silvia Mercado');
     this.updateButtonText();
     window.addEventListener('resize', this.updateButtonText.bind(this));
@@ -70,6 +73,13 @@ export class LandingComponent implements OnInit, OnDestroy {
     const whatsappNumber = '+525513806192'; // Replace with your WhatsApp Business number
     const url = `https://wa.me/${whatsappNumber}`;
     window.open(url, '_blank');
+  }
+
+  isMobileView() {
+    this.isMobile = window.innerWidth <= 950;
+    if (this.isMobile) {
+      this.renderer.setStyle(document.body, 'overflow-x', 'hidden');
+    }
   }
 
   @HostListener('window:scroll', [])
