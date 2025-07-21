@@ -78,7 +78,7 @@ export class BookPurchaseDialogComponent implements OnInit, AfterViewInit {
   private elements: StripeElements | null = null;
   private card: StripeCardElement | null = null;
 
-  private isTesting = true;
+  private isTesting = false;
 
   private unsubscribe$ = new Subject<void>();
 

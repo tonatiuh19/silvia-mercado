@@ -13,13 +13,13 @@
         (click)="openWhatsAppChat()"
       >
         <fa-icon *ngIf="isMobile" [icon]="faContactCard"></fa-icon>
-        <span *ngIf="!isMobile">Contactame</span>
+        <span *ngIf="!isMobile">Contáctame</span>
       </button>
       <button
         class="btn btn-light btn-sm m-1 btn-finance"
         (click)="showDialog()"
       >
-        <span *ngIf="isMobile">Compar libro</span>
+        <span *ngIf="isMobile">Comprar libro</span>
         <span *ngIf="!isMobile">Quiero mejorar mis finanzas</span>
       </button>
     </div>
