@@ -1,59 +1,107 @@
-# SilviaMercado
+# Silvia Mercado Website
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+A modern React website built with Vite, TypeScript, and TailwindCSS, optimized for static hosting.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+- **Frontend**: React 18 + React Router 6 (SPA) + TypeScript + Vite + TailwindCSS 3
+- **UI**: Radix UI + TailwindCSS 3 + Lucide React icons
+- **Build Tool**: Vite
+- **Testing**: Vitest
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Development
 
 ```bash
-ng generate component component-name
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Deployment to HostGator
 
-```bash
-ng generate --help
+### Building the Site
+
+1. Run the build command:
+
+   ```bash
+   npm run build
+   ```
+
+2. This will create a `dist` folder with all the static files.
+
+### Uploading to HostGator
+
+1. **Via File Manager (cPanel)**:
+
+   - Login to your HostGator cPanel
+   - Open File Manager
+   - Navigate to `public_html` (or your domain's document root)
+   - Upload all contents from the `dist` folder to `public_html`
+   - The `.htaccess` file is included to handle React Router routes
+
+2. **Via FTP**:
+   - Use an FTP client (FileZilla, etc.)
+   - Connect to your HostGator account
+   - Upload all contents from the `dist` folder to `public_html`
+
+### Important Notes
+
+- The `.htaccess` file is automatically included in the build to handle React Router's client-side routing
+- Make sure all files from the `dist` folder are uploaded to your domain's document root
+- The site will work immediately after upload - no server configuration needed
+
+## Project Structure
+
+```
+client/                   # React SPA source code
+├── pages/                # Route components
+├── components/ui/        # Reusable UI components
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions
+├── App.tsx              # Main app component with routing
+└── global.css           # Global styles and Tailwind imports
+
+public/                  # Static assets
+├── .htaccess           # Apache config for React Router
+├── favicon.ico         # Favicon
+└── ...                 # Other static files
 ```
 
-## Building
+## Available Routes
 
-To build the project run:
+- `/` - Home page
+- `/about` - About page
+- `/services` - Services page
+- `/blog` - Blog page
+- `/book` - Book page
+- `/booking` - Booking page
+- `/contact` - Contact page
 
-```bash
-ng build
-```
+## Customization
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Adding New Pages
 
-## Running unit tests
+1. Create a new component in `client/pages/`
+2. Add the route in `client/App.tsx`
+3. Rebuild and redeploy
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Styling
 
-```bash
-ng test
-```
+- Uses TailwindCSS for styling
+- Global styles in `client/global.css`
+- Component styles use TailwindCSS classes
+- Color scheme can be customized in `tailwind.config.ts`
 
-## Running end-to-end tests
+### UI Components
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Pre-built components in `client/components/ui/`
+- Based on Radix UI primitives
+- Fully customizable with TailwindCSS

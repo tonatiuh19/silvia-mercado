@@ -1,0 +1,21 @@
+# Files/folders that should NOT be uploaded to HostGator
+
+# (This is for reference only - these files won't be in the deploy folder anyway)
+
+node_modules/
+src/
+client/
+.git/
+.gitignore
+package.json
+package-lock.json
+tsconfig.json
+vite.config.ts
+tailwind.config.ts
+postcss.config.js
+components.json
+.prettierrc
+.npmrc
+README.md
+deploy.sh
+AGENTS.md
