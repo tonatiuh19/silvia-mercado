@@ -15,7 +15,7 @@ import {
   TrendingUp,
   Users,
   CheckCircle,
-  Play,
+  Camera,
   ArrowRight,
   DollarSign,
   Shield,
@@ -190,13 +190,13 @@ export default function Index() {
                 <div className="relative z-10 h-full flex items-center justify-center">
                   <div className="text-center space-y-4">
                     <div className="w-32 h-32 bg-white rounded-full mx-auto flex items-center justify-center shadow-xl">
-                      <Play className="h-12 w-12 text-finance-blue-600" />
+                      <Camera className="h-12 w-12 text-finance-blue-600" />
                     </div>
                     <p className="text-finance-blue-900 font-semibold">
-                      Evaluación Financiera Gratuita
+                      [Foto Profesional Próximamente]
                     </p>
                     <p className="text-sm text-gray-600">
-                      Realiza nuestro cuestionario de 2 minutos
+                      Imagen profesional de Silvia en proceso
                     </p>
                   </div>
                 </div>
